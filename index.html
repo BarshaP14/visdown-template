@@ -27,13 +27,40 @@
 <body>
 
 <div id="visdown-input">  
-  # Visdown
+  # Visdown is working
 
   **Make visualisations using only markdown**
 
   Write visualisation using a simple declarative markup like you would write code. Just wrap it in fenced block (three backticks) and mark the language as `vis`.
 
   *Make simple static visualisations*
+
+  ```vis
+data:
+  url: data/notes.csv
+mark: area
+encoding:
+  x:
+    type: temporal
+    field: year
+    axis:
+      format: %Y
+      labelAngle: 0
+      title: Year
+      titleFontSize: 16
+  y:
+    type: quantitative
+    field: money
+    aggregate: sum
+    axis:
+      title: Notes in Circulation (Value ₹ Billions)
+  color:
+    type: nominal
+    field: denom
+width: 800
+height: 500
+
+```
 
   ```vis
   data:
@@ -47,6 +74,34 @@
       type: quantitative
       field: price
   ```
+
+```vis
+data:
+  url: "data/sample.csv"
+mark: circle
+encoding:
+  x:
+    type: quantitative
+    field: sales
+    axis: null
+  y:
+    type: quantitative
+    field: profit
+    axis: null
+  color:
+    type: nominal
+    field: area
+    legend: null
+  size:
+    value: 800
+
+width: 400
+height: 400
+border: null
+
+```  
+
+
 
   Visdown is based on the grammar of interactive graphic (vega-lite) which allows you to specify the visualisation including interactions in a declarative fashion.
 
@@ -83,10 +138,13 @@
       field: bhp
   width: 450
   height: 300
-  ```    
+  ```  
+  
     
 </div>
+
 <div id="visdown-output"></div>
+<div id="first_graph"></div>
   
 <script src="visdown.js"></script>
 
