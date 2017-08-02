@@ -21,11 +21,12 @@
       #visdown-input {
         display: none;
       }
+      body{color: white;background-color: black;}
     </style>  
 
 </head>
 <body>
-
+<h1>Our first Visdown Template</h1>
 <div id="visdown-input">  
   # Visdown is working
 
@@ -34,7 +35,7 @@
   Write visualisation using a simple declarative markup like you would write code. Just wrap it in fenced block (three backticks) and mark the language as `vis`.
 
   *Make simple static visualisations*
-
+# First
   ```vis
 data:
   url: data/notes.csv
@@ -61,7 +62,7 @@ width: 800
 height: 500
 
 ```
-
+# Second
   ```vis
   data:
     url: data/cars.csv
@@ -74,7 +75,7 @@ height: 500
       type: quantitative
       field: price
   ```
-
+# Third
 ```vis
 data:
   url: "data/sample.csv"
@@ -97,7 +98,10 @@ encoding:
 
 width: 400
 height: 400
-border: null
+config:
+  circle:
+    filled: true
+    fillOpacity: 0.7
 
 ```  
 
@@ -139,8 +143,167 @@ border: null
   width: 450
   height: 300
   ```  
+  ## Distribution
+  ```vis
+data:
+  url: data/notes.csv
+mark: tick
+encoding:
+  y:
+    type: ordinal
+    field: value
+  x:
+    type: quantitative
+    field: number
   
-    
+width: 500
+height: 500
+```
+
+  ## Ranking
+  ## Magnitude
+  ## Part - to - Whole
+
+# Chart One
+```vis
+data:
+  url: data/notes.csv
+transform:
+  - 
+    filter: datum.year == 2015
+mark: bar
+encoding:
+  y:
+    type: nominal
+    field: denom
+  x:
+    type: quantitative
+    field: number
+  color:
+    type: nominal
+    field: denom
+```
+
+# Chart Two
+```vis
+data:
+  url: data/notes.csv
+transform:
+  - 
+    filter: datum.year == 2015
+mark: point
+encoding:
+  y:
+    type: nominal
+    field: denom
+  x:
+    type: quantitative
+    field: number
+  color:
+    type: nominal
+    field: denom
+```
+# Lollipop Chart Layer
+```vis
+data:
+  url: data/notes.csv
+transform:
+  - 
+    filter: datum.year == 2015
+layer:
+- mark: bar
+  encoding:
+    y:
+      type: nominal
+      field: denom
+    x:
+      type: quantitative
+      field: number
+    color:
+      type: nominal
+      field: denom
+    size:
+      value: 3
+- mark: point
+  encoding:
+    y:
+      type: nominal
+      field: denom
+    x:
+      type: quantitative
+      field: number
+    color:
+      type: nominal
+      field: denom
+config:
+  rowPadding:
+    bottom: 10
+```
+
+**Change Color Palette - Nominal**
+
+```vis
+width: 400
+height: 300
+data:
+  url: data/notes.csv
+mark: area
+encoding:
+  x:
+    field: year
+    type: temporal
+    axis:
+      format: %Y
+      labelAngle: 0
+  y:
+    aggregate: sum
+    field: money
+    type: quantitative
+    stack: normalize
+    axis:
+      format: %
+  color:
+    field: denom
+    type: ordinal
+    scale:
+      range:
+      - purple
+      - pink
+```
+**Change Color Palette - Ordinal**
+
+```vis
+width: 400
+height: 300
+data:
+  url: data/notes.csv
+mark: area
+encoding:
+  x:
+    field: year
+    type: temporal
+    axis:
+      format: %Y
+      labelAngle: 0
+  y:
+    aggregate: sum
+    field: money
+    type: quantitative
+    stack: normalize
+    axis:
+      format: %
+  color:
+    field: denom
+    type: ordinal
+config:
+  background: black
+  legend:
+    labelColor: white
+    titleColor: white
+  axis:
+    labelColor: white
+    titleColor: white
+```
 </div>
 
 <div id="visdown-output"></div>

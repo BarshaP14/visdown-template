@@ -1,11 +1,34 @@
 window.onload = function () {
 
+	//theme
+	var config = {
+		"background": 'black',
+		"legend":{
+			"domainColor": "white",
+			"tickColor": "white",
+			"labelColor": "white",
+			"tickLabelColor": "white",
+			"titleColor": "white"		
+		},
+		"axis":{
+			"domainColor": "white",
+			"tickColor": "white",
+			"labelColor": "white",
+			"tickLabelColor": "white",
+			"titleColor": "white"		
+		},
+
+		"range": {
+			"category": {"scheme": "dark2"},
+		}
+	};
+
 	// Start a new marked instance and renderer
 	var marked = window.marked;
 	var renderer = new marked.Renderer();
 	var counter = 0;
 	var specs = [];
-	var opts = {"mode": "vega-lite", "renderer": "svg" };
+	var opts = {"mode": "vega-lite", "renderer": "svg", "config": config};
 
 
 	// Render the ```vis as a div and save the json spec
@@ -39,7 +62,7 @@ window.onload = function () {
 
 	window.visdown = function () {
 		console.log('visdown');
-		var markdownText = input.textContent;
+		var markdownText = input.innerHTML;
 		output.innerHTML = marked(markdownText, { renderer: renderer});
 		vegaliteRender();
 	}
